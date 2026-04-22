@@ -1,0 +1,443 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Priyanshu Thakur | Software Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1220;
+      --card: #121b2e;
+      --muted: #9aa8c7;
+      --text: #e8eeff;
+      --accent: #3dd9b3;
+      --accent2: #f7b955;
+      --border: rgba(255,255,255,.12);
+      --shadow-soft: 0 10px 28px rgba(0, 0, 0, .22);
+      --shadow-strong: 0 18px 38px rgba(0, 0, 0, .34);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      background: radial-gradient(circle at top right, #1b2b4a 0%, var(--bg) 45%);
+      color: var(--text);
+      overflow-x: hidden;
+      position: relative;
+    }
+    body::before, body::after {
+      content: "";
+      position: fixed;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      filter: blur(80px);
+      z-index: -1;
+      pointer-events: none;
+      opacity: .25;
+    }
+    body::before {
+      top: -90px;
+      right: -100px;
+      background: rgba(61, 217, 179, .55);
+    }
+    body::after {
+      bottom: -120px;
+      left: -110px;
+      background: rgba(247, 185, 85, .5);
+    }
+    h1,h2,h3 { font-family: "Space Grotesk", sans-serif; margin: 0 0 .6rem; }
+    .container { width: min(1100px, 92%); margin: auto; }
+    .nav {
+      position: sticky; top: 0; z-index: 99;
+      background: rgba(11,18,32,.85);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between; padding: .9rem 0;
+      gap: .8rem;
+    }
+    .brand { font-weight: 700; letter-spacing: .4px; }
+    .links a { color: var(--muted); text-decoration: none; margin-left: 1rem; font-weight: 600; }
+    .links a:hover { color: var(--text); }
+    .links a {
+      transition: color .25s ease, text-shadow .25s ease;
+      white-space: nowrap;
+    }
+    .links a:hover {
+      text-shadow: 0 0 12px rgba(61, 217, 179, .35);
+    }
+    section { padding: 3.2rem 0; }
+    .tag { color: var(--accent); font-size: .8rem; letter-spacing: 1.3px; font-weight: 700; margin-bottom: .6rem; }
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      align-items: stretch;
+    }
+    .hero .card {
+      background: linear-gradient(165deg, #17233d, #111a2b);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.2rem;
+      box-shadow: var(--shadow-soft);
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+    .hero .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-strong);
+      border-color: rgba(61, 217, 179, .5);
+    }
+    .side-col {
+      display: grid;
+      gap: .9rem;
+      align-content: start;
+      height: 100%;
+    }
+    .intro-card {
+      align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .profile-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: .9rem;
+    }
+    .profile-image {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      object-position: center 22%;
+      border-radius: 50%;
+      border: 3px solid var(--accent);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, .35);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .profile-image:hover {
+      transform: scale(1.03);
+      box-shadow: 0 14px 32px rgba(61, 217, 179, .28);
+    }
+    .name { font-size: clamp(2rem, 5vw, 3.4rem); }
+    .role { color: var(--accent2); font-size: 1.2rem; font-weight: 700; margin-bottom: .8rem; }
+    .summary { color: var(--muted); line-height: 1.7; }
+    .contact-grid { display: grid; gap: .6rem; color: var(--muted); }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1rem; }
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1rem;
+      box-shadow: var(--shadow-soft);
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+    .panel:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-strong);
+      border-color: rgba(247, 185, 85, .45);
+    }
+    .panel li {
+      transition: color .2s ease, transform .2s ease;
+    }
+    .panel li:hover {
+      color: var(--text);
+      transform: translateX(2px);
+    }
+    ul { margin: .2rem 0 0 1rem; padding: 0; }
+    li { margin: .35rem 0; color: var(--muted); }
+    .edu-item, .project-item { margin-bottom: .9rem; }
+    .edu-item:last-child, .project-item:last-child { margin-bottom: 0; }
+    .meta { color: var(--muted); font-size: .95rem; }
+    .contact-form {
+      margin-top: 1rem;
+      display: grid;
+      gap: .8rem;
+    }
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: .75rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: #0f172a;
+      color: var(--text);
+      font-family: "Manrope", sans-serif;
+      transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+    }
+    .contact-form input:focus, .contact-form textarea:focus {
+      outline: none;
+      border-color: rgba(61, 217, 179, .8);
+      box-shadow: 0 0 0 4px rgba(61, 217, 179, .15);
+      transform: translateY(-1px);
+    }
+    .contact-form button {
+      padding: .8rem 1rem;
+      border: none;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      background: var(--accent);
+      color: #06231d;
+      box-shadow: 0 8px 20px rgba(61, 217, 179, .35);
+      transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+    }
+    .contact-form button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(61, 217, 179, .42);
+      filter: brightness(1.03);
+    }
+    .contact-form button:active {
+      transform: translateY(0);
+    }
+    .form-status { margin-top: .7rem; font-size: .95rem; }
+    main > section {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity .45s ease, transform .45s ease;
+    }
+    main > section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    main > section:nth-of-type(2) { transition-delay: .04s; }
+    main > section:nth-of-type(3) { transition-delay: .08s; }
+    main > section:nth-of-type(4) { transition-delay: .12s; }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.2rem 0;
+      color: var(--muted);
+      text-align: center;
+    }
+    @media (max-width: 1080px) {
+      .hero { grid-template-columns: 1.08fr .92fr; }
+      .name { font-size: clamp(1.9rem, 4.6vw, 2.9rem); }
+    }
+    @media (max-width: 860px) {
+      .hero, .grid-2 { grid-template-columns: 1fr; }
+      .nav-inner { flex-direction: column; align-items: flex-start; }
+      .links {
+        display: flex;
+        width: 100%;
+        overflow-x: auto;
+        scrollbar-width: thin;
+        padding-bottom: .2rem;
+      }
+      .links a { margin-left: 0; margin-right: .9rem; }
+      .side-col { max-width: 520px; width: 100%; margin: 0 auto; }
+      .intro-card { justify-content: flex-start; }
+    }
+    @media (max-width: 560px) {
+      section { padding: 2.5rem 0; }
+      .hero .card, .panel { padding: .95rem; }
+      .name { font-size: clamp(1.6rem, 8vw, 2.2rem); }
+      .role { font-size: 1rem; }
+      .profile-image { width: 142px; height: 142px; }
+      .contact-form button { padding: .75rem .9rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <div class="brand">Priyanshu Thakur</div>
+      <nav class="links">
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="about" class="hero">
+      <div class="card intro-card">
+        <div class="tag">INTRODUCTION</div>
+        <h1 class="name">Priyanshu Thakur</h1>
+        <div class="role">Software Developer</div>
+        <p class="summary">
+          Computer Applications graduate with a solid understanding of software development principles and full stack technologies.
+          Experienced in developing academic projects using Python and database technologies. Possesses strong communication,
+          time management, and analytical skills, with a keen interest in continuous learning and professional growth.
+        </p>
+      </div>
+      <div class="side-col">
+        <div class="profile-wrap">
+          <img
+            class="profile-image"
+            src="images/profile.jpeg"
+            alt="Priyanshu Thakur profile image"
+          />
+        </div>
+        <div class="card">
+        <div class="tag">PERSONAL INFO</div>
+        <div class="contact-grid">
+          <div><strong>Name:</strong> Priyanshu Thakur</div>
+          <div><strong>Gender:</strong> Male</div>
+          <div><strong>Nationality:</strong> Indian</div>
+          <div><strong>Email:</strong> thakurpriyanshu460@gmail.com</div>
+          <div><strong>Phone:</strong> +91 9805877665</div>
+          <div><strong>Location:</strong> Kangra, Himachal Pradesh, India - 176097</div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <section class="grid-2">
+      <div id="education" class="panel">
+        <div class="tag">EDUCATION & TRAINING</div>
+        <div class="edu-item">
+          <h3>Bachelor of Computer Applications</h3>
+          <div class="meta">Computer Science | Career Point University, Hamirpur</div>
+          <div class="meta">08/2022 - 06/2025</div>
+        </div>
+        <div class="edu-item">
+          <h3>Master of Computer Applications</h3>
+          <div class="meta">Computer Science | Chandigarh University, Mohali, Punjab</div>
+          <div class="meta">Started 07/2025</div>
+        </div>
+      </div>
+
+      <div id="skills" class="panel">
+        <div class="tag">SKILLS</div>
+        <ul>
+          <li>Software Development</li>
+          <li>Full Stack Development</li>
+          <li>HTML, CSS, JavaScript</li>
+          <li>PL/SQL Programming</li>
+          <li>Python Programming</li>
+          <li>AI, ML, Data Science (Fundamentals)</li>
+          <li>Git, VS Code</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="grid-2">
+      <div id="projects" class="panel">
+        <div class="tag">PROJECTS & RESEARCH</div>
+        <div class="project-item">
+          <h3>Global Currency Converter and Live Exchange Rates</h3>
+        </div>
+        <div class="project-item">
+          <h3>Facial Recognition Attendance System</h3>
+        </div>
+        <div class="project-item">
+          <h3>CarOnScroll Website</h3>
+        </div>
+        <div class="project-item">
+          <h3>Smart Hospital Management System</h3>
+        </div>
+      </div>
+
+      <div id="certifications" class="panel">
+        <div class="tag">COURSES & CERTIFICATIONS</div>
+        <ul>
+          <li>C and C++ Programming</li>
+          <li>Introduction to Artificial Intelligence</li>
+          <li>Basics of Data Science</li>
+          <li>Deep Learning</li>
+          <li>Computer Vision</li>
+          <li>Basics of Natural Language Processing</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact" class="panel">
+      <div class="tag">CONTACT INFO</div>
+      <h2>Let's Connect</h2>
+      <p class="meta">Email: thakurpriyanshu460@gmail.com</p>
+      <p class="meta">Phone: +91 9805877665</p>
+      <p class="meta">Address: Kangra, Himachal Pradesh, India - 176097</p>
+
+      <form id="contactForm" class="contact-form">
+        <input type="text" id="name" name="name" placeholder="Your Name" required />
+        <input type="email" id="email" name="email" placeholder="Your Email" required />
+        <input type="text" id="subject" name="subject" placeholder="Subject" required />
+        <textarea id="message" name="message" rows="5" placeholder="Write your message..." required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+      <p id="formStatus" class="form-status meta"></p>
+    </section>
+  </main>
+
+  <footer>
+    <span id="year"></span> Priyanshu Thakur. All rights reserved.
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = "© " + new Date().getFullYear() + " ";
+
+    const contactForm = document.getElementById("contactForm");
+    const formStatus = document.getElementById("formStatus");
+    const CONTACT_API = "http://localhost:8080/api/contact-messages";
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+
+    const sections = document.querySelectorAll("main > section");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    sections.forEach((sec) => observer.observe(sec));
+
+    contactForm.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const subject = document.getElementById("subject").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      if (!name || !email || !subject || !message) {
+        formStatus.textContent = "Please fill in all fields.";
+        formStatus.style.color = "#f7b955";
+        return;
+      }
+
+      try {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending...";
+        const response = await fetch(CONTACT_API, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, subject, message })
+        });
+
+        const raw = await response.text();
+        let result = {};
+        if (raw) {
+          try {
+            result = JSON.parse(raw);
+          } catch (_) {
+            result = { message: raw };
+          }
+        }
+
+        if (!response.ok) {
+          throw new Error(result.message || `Failed to submit your message. (HTTP ${response.status})`);
+        }
+
+        formStatus.textContent = "Thank you! Your message has been submitted.";
+        formStatus.style.color = "#3dd9b3";
+        contactForm.reset();
+      } catch (error) {
+        formStatus.textContent = error.message || "Could not send message. Please try again.";
+        formStatus.style.color = "#f7b955";
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Send Message";
+      }
+    });
+  </script>
+</body>
+</html>
